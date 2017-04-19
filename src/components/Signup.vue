@@ -50,7 +50,7 @@ export default {
 			
 		},
   created: function(){
-		this.$http.get('http://localhost/login/src/components/tabela.php').then(function(response){
+		this.$http.get('http://localhost/VueLogin/src/components/tabela.php').then(function(response){
 		this.users=response.data;
 		})
 	}
