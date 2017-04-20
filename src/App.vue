@@ -17,8 +17,7 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-@import './assets/css/bootstrap.css'
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style src="../src/assets/css/bootstrap.css">
 
 </style>
