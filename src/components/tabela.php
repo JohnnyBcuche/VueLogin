@@ -4,15 +4,13 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, "kohana_db");
+$conn = new mysqli($servername, $username, $password, "login");
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
- $sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users";
 $result = mysqli_query($conn, $sql) or die("Error in Selecting " . mysqli_error($conn));
 
  $emparray = array();
