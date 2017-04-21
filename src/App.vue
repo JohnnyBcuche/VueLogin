@@ -17,8 +17,10 @@ export default {
   }
 }
 </script>
+
 <script src="../src/assets/js/bootstrap.js"></script>
 <script src="../src/assets/js/jquery.js"></script>
+
 <style src="../src/assets/css/bootstrap.css">
 
 </style>
