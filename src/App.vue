@@ -17,8 +17,8 @@ export default {
   }
 }
 </script>
-
 <style lang="sass">
-@import './assets/css/bootstrap.css'
+
+@import "./assets/font-awesome-4.7.0/css/font-awesome.css"
 
 </style>

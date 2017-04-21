@@ -8,6 +8,8 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Logged from './components/Logged'
+import AddSifarnik from './components/addSifarnik'
+import EditSifarnik from './components/editSifarnik'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
@@ -20,7 +22,9 @@ const router = new VueRouter({
 		{path: '/', component: Home},
 		{path: '/signup', component: Signup},
 		{path: '/login', component: Login},
-    {path: '/logged', component: Logged}
+    {path: '/logged', component: Logged},
+    {path: '/addSifarnik', component: AddSifarnik},
+    {path: '/editSifarnik/:id', component: EditSifarnik},
 	]
 });
 
@@ -33,7 +37,7 @@ new Vue({
   		<ul class="nav ">
   			<li><router-link to="/">Home</router-link></li>
   			<li><router-link to="/signup">Signup</router-link></li>
-  			<li><router-link to="/login">Login</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>>
   		</ul>
   	</div>
   </nav>
