@@ -28,7 +28,7 @@ const router = new VueRouter({
 new Vue({
 	router,
   template: `<div id="app">
-  <nav class="navbar-left navbar-inverse container">
+  <nav class="navbar-left navbar-left-min navbar-inverse container">
   <a href="#" class="navbar-brand">Pasmine</a>
   <button class="navbar-toggle" data-toggle="collapse" data-target="#demo">
     <span class="icon-bar"></span>

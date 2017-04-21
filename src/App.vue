@@ -18,9 +18,21 @@ export default {
 }
 </script>
 
-<script src="../src/assets/js/bootstrap.js"></script>
-<script src="../src/assets/js/jquery.js"></script>
+<style>
 
-<style src="../src/assets/css/bootstrap.css">
+@media (min-width: 760px) {
+.navbar-left{
+	height: 100vh;
+	width: 200px;
+	position: fixed;
+	}	
+.navbar-left-min {
+	display: hidden;
+	}
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  font-size: 20px;
+}
 
 </style>
