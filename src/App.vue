@@ -17,8 +17,21 @@ export default {
   }
 }
 </script>
-<style lang="sass">
+<style>
 
-@import "./assets/font-awesome-4.7.0/css/font-awesome.css"
+@media (min-width: 760px) {
+.navbar-left{
+	height: 100vh;
+	width: 200px;
+	position: fixed;
+	}	
+.navbar-left-min {
+	display: hidden;
+	}
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  font-size: 20px;
+}
 
 </style>

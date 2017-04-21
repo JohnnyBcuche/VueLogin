@@ -1,5 +1,5 @@
-<template>
-<div class="container">
+<template class="container">
+<div class="signup">
 <div class="razmak"></div>
 <form action="" v-on:submit="addUser" class="form-horizontal jumbotron vertical-center">
 <fieldset class="container text-center">
@@ -10,14 +10,16 @@
 </fieldset>
 </form>
 <ul>
-	<div class="row list-group form-horizontal ">
+	<div class="row list-group form-horizontal">
 	<li v-for="user in users" class="list-group-item">
+	<div class="col-xs-4 col-lg-4">
 		<div class="panel panel-info">
 		<div class="panel-heading">
 		Username: {{user.username}} 
 		</div>
 		<div class="panel-body">
 		Email: {{user.email}} <br>Password: {{user.password}}
+		</div>
 		</div>
 		</div>
 	</li >
@@ -58,8 +60,16 @@ export default {
 </script>
 
 <style>
+li{
+		border: 0;
+		padding: 0;
+		margin: 0;
+	}
+	ul{
+		padding-top: 20px;
+	}
 .form-horizontal{
 	    margin: 40px auto;
-	    width:40%;
+	    width:50%;
 	}
 </style>

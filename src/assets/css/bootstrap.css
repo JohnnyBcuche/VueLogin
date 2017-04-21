@@ -4484,7 +4484,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-left {
     float: left !important;
     height: 100vh;
-    width: 150px;
+    width: 200px;
     position: fixed;
   }
   .navbar-right {
@@ -4608,6 +4608,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #9d9d9d;
+  font-size: 20px;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
