@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+  <img src="./assets/twit.png" alt="">
     <login></login>
   </div>
 </template>
@@ -20,19 +21,31 @@ export default {
 
 <style>
 
-@media (min-width: 760px) {
+.navbar-nav {
+	font-size: 14px;
+	display: flex;
+}
+.margin{
+	margin: 40px auto;
+}
+
+@media (min-width: 768px) {
 .navbar-left{
 	height: 100vh;
 	width: 200px;
 	position: fixed;
 	}	
-.navbar-left-min {
-	display: hidden;
+.navbar-nav{
+	font-size: 25px;
+	display: inline-block;
 	}
-}
-
-.navbar-inverse .navbar-nav > li > a {
-  font-size: 20px;
+.navbar-inverse .navbar-nav > li > a:hover {
+	border: 1px solid #9d9d9d;
+	width: 160px;
+	}
+.margin{
+	margin: 40px 0 0 200px;
+	}
 }
 
 </style>
