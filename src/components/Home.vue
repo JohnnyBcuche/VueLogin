@@ -5,11 +5,8 @@
 <h1>{{title}}</h1>
 <alert v-if="alert" v-bind:message='alert'/>
 </div>
-<div class="table-responsive">
-<div class="input-group">
-<input class="form-control" placeholder="Search..." v-model="filterInput">
-<router-link class="btn btn-primary form-control" to="/addSifarnik">Dodaj</router-link>
-</div>
+<div class="table-responsive margin">
+
 <table class="table">
  <thead>
 	<tr>
@@ -25,6 +22,7 @@
 	</tr>
 </tbody></table>
 </div>
+<router-link class="btn btn-primary margin" to="/addSifarnik">Dodaj</router-link>
 </div>
 </template>
 
