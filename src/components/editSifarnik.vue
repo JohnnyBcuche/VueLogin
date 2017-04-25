@@ -1,8 +1,11 @@
 <template>
-  <div class="container editSifarnik">
-  <router-link to="/">Nazad</router-link>
-  <h1 class="page-header">Pasmina: {{sifarnik.Pasmina}}    Opis: {{sifarnik.Description}}</h1>
+  <div class="container editSifarnik margin container-width"><div class="razmak"></div>
+  <router-link to="/"><i class="fa fa-arrow-circle-o-left font btn-default" aria-hidden="true"></i></router-link>
+  <p><h3><b>Pasmina:</b></h3> <h4>{{sifarnik.Pasmina}}</h4><h3><b>Opis:</b></h3> <h4>{{sifarnik.Description}}</h4></p>
+  <div class="razmak"></div>
   <span><button v-on:click="deleteSifarnik(sifarnik.id)" class="btn btn-danger">Izbrisi</button></span>
+  <div class="razmak"></div>
+
   
   <form v-on:submit="editSifarnik">
   <div class="well">

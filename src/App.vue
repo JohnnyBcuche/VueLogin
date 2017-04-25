@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-  <img src="./assets/twit.png" alt="">
     <login></login>
   </div>
 </template>
@@ -18,33 +17,62 @@ export default {
   }
 }
 </script>
+
 <style>
 
 .navbar-nav {
-	font-size: 14px;
-	display: flex;
+  font-size: 14px;
+  display: flex;
 }
 .margin{
-	margin: 40px auto;
+  margin: 10px auto;
+}
+.font{
+  font-size: 25px;
+}
+.container-width{
+  width: 90%;
+  word-wrap: break-word;
+}
+.table{
+  table-layout: fixed;
+  word-wrap: break-word;
+  text-align: justify;
 }
 
 @media (min-width: 768px) {
 .navbar-left{
-	height: 100vh;
-	width: 200px;
-	position: fixed;
-	}	
+  height: 100vh;
+  width: 200px;
+  position: fixed;
+  } 
 .navbar-nav{
-	font-size: 25px;
-	display: inline-block;
-	}
+  font-size: 25px;
+  display: inline-block;
+  }
 .navbar-inverse .navbar-nav > li > a:hover {
-	border: 1px solid #9d9d9d;
-	width: 160px;
-	}
+  border: 1px solid #9d9d9d;
+  width: 160px;
+  }
 .margin{
-	margin: 40px 0 0 200px;
-	}
+  margin: 0 0 0 200px;
+  }
+.SearchWidth{
+  width: 300px;
+  }
+.font{
+  font-size: 39px;
+  }
+.container-width{
+  width: 80%;
+  word-wrap: break-word;
+  text-align: justify;
+  }
+.table{
+  table-layout: fixed;
+  word-wrap: break-word;
+  text-align: justify;
+  }
 }
 
 </style>

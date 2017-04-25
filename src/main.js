@@ -34,29 +34,21 @@ new Vue({
   template: `<div id="app">
   <nav class="navbar-left navbar-inverse container">
   <a href="#" class="navbar-brand">Pasmine</a>
-  <div class="navbar-nav">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="q">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-        </div>
-        </div>
+  
   <button class="navbar-toggle" data-toggle="collapse" data-target="#demo">
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </button>
-  	<div class="collapse navbar-collapse" id="demo">
-  		<ul class="nav navbar-nav">
-  			<li><router-link to="/">Home</router-link></li>
-  			<li><router-link to="/signup">Signup</router-link></li>
-        <li><router-link to="/login">Login</router-link></li>>
-  		</ul>
-  	</div>
+    <div class="collapse navbar-collapse" id="demo">
+      <ul class="nav navbar-nav">
+        <li><router-link to="/">Home</router-link></li><br>
+        <li><router-link to="/signup">Signup</router-link></li><br>
+        <li><router-link to="/login">Login</router-link></li><br>
+      </ul>
+    </div>
   </nav>
   <router-view></router-view>
   </div>
   `,
 }).$mount('#app')
-

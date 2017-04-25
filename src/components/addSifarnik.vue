@@ -1,5 +1,5 @@
 <template>
-<div class="addSifarnik container">
+<div class="addSifarnik container margin container-width"><div class="razmak"></div>
 <alert v-if="alert" v-bind:message="alert"/>
 <h1 class="page-header">Dodaj sifarnik</h1>
 <form v-on:submit="addSifarnik">
