@@ -6,15 +6,15 @@
 	<div class="well">
 		<h4>Pasmina</h4>
 		<div class="form-group">
-			<label for="">Ime pasmina</label>
-			<input type="text" class="form-control" placeholder="Ime pasmina" v-model="sifarnik.Pasmina">
+			<label for="">Ime breed</label>
+			<input type="text" class="form-control" placeholder="Ime breed" v-model="sifarnik.breed">
 		</div>
 	</div>
 	<div class="well">
-		<h4>Description</h4>
+		<h4>Opis</h4>
 		<div class="form-group">
-			<label for="">Description</label>
-			<input type="text" class="form-control" placeholder="Description" v-model="sifarnik.Description">
+			<label for="">Opis</label>
+			<input type="text" class="form-control" placeholder="description" v-model="sifarnik.description">
 		</div>
 	</div>
 	<input type="submit" value="Dodaj" class="btn btn-primary"><div class="razmak"></div>
@@ -35,11 +35,11 @@ export default {
   },
   methods:{
   	addSifarnik(e){
-  		if(!this.sifarnik.Pasmina || !this.sifarnik.Description){
+  		if(!this.sifarnik.breed || !this.sifarnik.description){
   			this.alert = "Sva polja moraju biti popunjena";
   		} else{
-  			let newSifarnik = JSON.stringify({ Pasmina: this.sifarnik.Pasmina, Description: this.sifarnik.Description });
-  		this.$http.post('http://localhost/slimapp/public/api/code', newSifarnik).then(function(response){
+  			let newSifarnik = JSON.stringify({ breed: this.sifarnik.breed, description: this.sifarnik.description });
+  		this.$http.post('http://localhost/slim/public/api/code', newSifarnik).then(function(response){
   			this.$router.push({path: '/', query:{alert:'Sifranik je dodan'}});
   		});
   			e.preventDefault();

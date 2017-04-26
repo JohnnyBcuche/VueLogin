@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import vueResource from 'vue-resource'
 import VueRouter from 'vue-router'
+import VuePaginator from 'vuejs-paginator'
 import App from './App'
 import Home from './components/Home'
 import Login from './components/Login'

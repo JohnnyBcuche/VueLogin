@@ -19,15 +19,15 @@
 </colgroup>
  <thead>
 	<tr>
-		<th>Pasmina</th>
-		<th colspan="2">Opis</th>
+		<th v-on:click="orderBreed = !orderBreed">Pasmina <i class="pull-right glyphicon" :class="[orderBreed?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
+    <th v-on:click="orderDescription = !orderDescription">Opis <i class="pull-right glyphicon" :class="[orderDescription?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
     <th></th>
 	</tr>
 </thead>
 <tbody v-for="field in filterBy(sifarnik, filterInput)">
 	<tr class="table-width">
-		<td>{{field.Pasmina}}</td>
-		<td>{{field.Description}}</td>
+		<td>{{field.breed}}</td>
+		<td>{{field.description}}</td>
 		<td><router-link v-bind:to="'/editSifarnik/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
 	</tr>
 </tbody></table>
@@ -44,21 +44,64 @@ export default {
     return {
   		sifarnik: [],
   		alert: '',
-      filterInput: ''
+      filterInput: '',
+      orderBreed:false, 
+      orderDescription:false,
+      options: {
+        remote_data: 'nested.data',
+        remote_current_page: 'nested.current_page',
+        remote_last_page: 'nested.last_page',
+        remote_next_page_url: 'nested.next_page_url',
+        remote_prev_page_url: 'nested.prev_page_url',
+        next_button_text: 'Go Next',
+        previous_button_text: 'Go Back'
+      }
     }
+  },
+  watch:{
+    orderBreed: function (val) {
+      var self = this;
+      self.sifarnik = self.sortBy(self.sifarnik, 'breed', val);
+    },
+
+    orderDescription: function (val) {
+      var self = this;
+      self.sifarnik = self.sortBy(self.sifarnik, 'description', val);
+    }
+
   },
   methods:{
   	fetchSifarnik(){
-  		this.$http.get('http://localhost/slimapp/public/api/codes').then(function(response){
+  		this.$http.get('http://localhost/slim/public/api/codes').then(function(response){
 		this.sifarnik=response.data;
   		});
   	},
     filterBy(list, value){
       value = value.toLowerCase();
       return list.filter(function(sifarnik){
-      return (sifarnik.Pasmina.toLowerCase().indexOf(value) > -1) || (sifarnik.Description.toLowerCase().indexOf(value) > -1);
+      return (sifarnik.breed.toLowerCase().indexOf(value) > -1) || (sifarnik.description.toLowerCase().indexOf(value) > -1);
       });
-    }
+    },
+    sortBy: function(array, param, reverse) {
+      var filterA, filterB;
+      return array.sort(function (a, b) {
+        switch (param) {
+          case 'breed':
+            filterA = a.breed;
+            filterB = b.breed;
+            break;
+          case 'description':
+            filterA = a.description;
+            filterB = b.description;
+            break;
+        }
+        if (reverse) {
+          return (filterA > filterB) ? 1 : -1;
+        } else {
+          return (filterA < filterB) ? 1 : -1;
+        }
+      });
+    },
   },
   created: function(){
   	if(this.$route.query.alert){
