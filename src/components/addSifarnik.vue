@@ -6,14 +6,12 @@
 	<div class="well">
 		<h4>Pasmina</h4>
 		<div class="form-group">
-			<label for="">Ime breed</label>
-			<input type="text" class="form-control" placeholder="Ime breed" v-model="sifarnik.breed">
+			<input type="text" class="form-control" placeholder="breed" v-model="sifarnik.breed">
 		</div>
 	</div>
 	<div class="well">
 		<h4>Opis</h4>
 		<div class="form-group">
-			<label for="">Opis</label>
 			<input type="text" class="form-control" placeholder="description" v-model="sifarnik.description">
 		</div>
 	</div>
@@ -30,7 +28,7 @@ export default {
     return {
     	title: 'Home page.',
 		  sifarnik: {},
-      alert: ''
+      alert: '',
     }
   },
   methods:{

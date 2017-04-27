@@ -3,7 +3,8 @@
 <div class="razmak"></div>
 <alert v-if="alert" v-bind:message='alert' class="margin"/><div class="razmak"></div>
         <div class="input-group margin SearchWidth">
-            <input type="text" class="form-control" placeholder="Search" v-model="filterInput" name="q">
+        <!--Search-->
+            <input type="text" class="form-control" id='search' placeholder="Search" v-model="filterInput" name="q">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
@@ -24,13 +25,21 @@
     <th></th>
 	</tr>
 </thead>
-<tbody v-for="field in filterBy(sifarnik, filterInput)">
+<tbody v-for="field in filterBy(showMore(sifarnik, startingLimiter), filterInput)">
 	<tr class="table-width">
-		<td>{{field.breed}}</td>
+		<td>{{field.id}}  {{field.breed}}</td>
 		<td>{{field.description}}</td>
 		<td><router-link v-bind:to="'/editSifarnik/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
 	</tr>
-</tbody></table>
+</tbody><div class="btn-group btn-group-justified" role="group" aria-label="...">
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" v-on:click="startingLimiter += jumpLimiter">Show more</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" v-on:click="startingLimiter = sifarnik.length" >Show all</button>
+  </div>
+</div>
+    </table>
 </div>
 <router-link class="btn btn-primary margin" to="/addSifarnik">Dodaj</router-link><div class="razmak"></div>
 </div>
@@ -47,15 +56,12 @@ export default {
       filterInput: '',
       orderBreed:false, 
       orderDescription:false,
-      options: {
-        remote_data: 'nested.data',
-        remote_current_page: 'nested.current_page',
-        remote_last_page: 'nested.last_page',
-        remote_next_page_url: 'nested.next_page_url',
-        remote_prev_page_url: 'nested.prev_page_url',
-        next_button_text: 'Go Next',
-        previous_button_text: 'Go Back'
-      }
+      resource_url: 'http://localhost/slim/public/api/codes',
+      //Number of elements to show after clicking show more
+      jumpLimiter: 5,
+      //Starting number of elements
+      startingLimiter: 5,
+      counter: 1
     }
   },
   watch:{
@@ -72,7 +78,7 @@ export default {
   },
   methods:{
   	fetchSifarnik(){
-  		this.$http.get('http://localhost/slim/public/api/codes').then(function(response){
+  		this.$http.get(this.resource_url).then(function(response){
 		this.sifarnik=response.data;
   		});
   	},
@@ -102,6 +108,12 @@ export default {
         }
       });
     },
+    showMore: function(list, limit){
+      if($.trim($("#search").val()) != "")
+        return list;
+      else
+      return list.slice(0, limit);
+    }
   },
   created: function(){
   	if(this.$route.query.alert){
@@ -112,6 +124,7 @@ export default {
 	},
   components: {
   	alert,
+    VPaginator: VuePaginator
   }
 }
 </script>

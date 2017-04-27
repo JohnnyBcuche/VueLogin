@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import vueResource from 'vue-resource'
 import VueRouter from 'vue-router'
-import VuePaginator from 'vuejs-paginator'
+import VuePaginate from 'vue-paginate'
 import App from './App'
 import Home from './components/Home'
 import Login from './components/Login'
@@ -14,6 +14,7 @@ import EditSifarnik from './components/editSifarnik'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
+Vue.use(VuePaginate)
 Vue.config.productionTip = false
 
 const router = new VueRouter({
