@@ -11,25 +11,21 @@
         </div>
 <div class="razmak"></div>
 
-<div class="table-responsive margin">
+<div class="margin">
 <table class="table table-bordered table-striped">
-<colgroup>
-  <col class="col-md-5 col-sm-5">
-  <col class="col-md-7 col-sm-7">
-  <col class="col-md-1 col-sm-1">
-</colgroup>
+
  <thead>
 	<tr>
-		<th v-on:click="orderBreed = !orderBreed">Pasmina <i class="pull-right glyphicon" :class="[orderBreed?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
-    <th v-on:click="orderDescription = !orderDescription">Opis <i class="pull-right glyphicon" :class="[orderDescription?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
-    <th></th>
+		<th width="35%" v-on:click="orderBreed = !orderBreed">Pasmina <i class="pull-right glyphicon" :class="[orderBreed?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
+    <th width="55%" v-on:click="orderDescription = !orderDescription">Opis <i class="pull-right glyphicon" :class="[orderDescription?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
+    <th width="10%" class="center"><div class="none">Izmeni</div></th>
 	</tr>
 </thead>
 <tbody v-for="field in filterBy(showMore(sifarnik, startingLimiter), filterInput)">
 	<tr class="table-width">
 		<td>{{field.id}}  {{field.breed}}</td>
 		<td>{{field.description}}</td>
-		<td><router-link v-bind:to="'/editSifarnik/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
+		<td class="center"><router-link v-bind:to="'/editSifarnik/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
 	</tr>
 </tbody><div class="btn-group btn-group-justified" role="group" aria-label="...">
 <div class="btn-group" role="group">

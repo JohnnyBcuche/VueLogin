@@ -1,13 +1,17 @@
 <template>
-  <div class="container editSifarnik margin container-width"><div class="razmak"></div>
-  <router-link to="/"><i class="fa fa-arrow-circle-o-left font btn-default" aria-hidden="true"></i></router-link>
-  <p><h3><b>Pasmina:</b></h3> <h4>{{sifarnik.breed}}</h4><h3><b>Opis:</b></h3> <h4>{{sifarnik.description}}</h4></p>
+  <div class="container editSifarnik container-width"><div class="razmak"></div>
+
+  <div class="margin">
+  <router-link to="/"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
+  <div class="height1"><h3><b>Pasmina:</b></h3> <h4>{{sifarnik.breed}}</h4><h3><b>Opis:</b></h3> <h4>{{sifarnik.description}}</h4></div>
+  </div>
+
   <div class="razmak"></div>
-  <span><button v-on:click="deleteSifarnik(sifarnik.id)" class="btn btn-danger">Izbrisi</button></span>
+  <span><button v-on:click="deleteSifarnik(sifarnik.id)" class="btn-sm btn-danger margin">Izbrisi</button></span>
   <div class="razmak"></div>
 
   
-  <form v-on:submit="editSifarnik">
+  <form v-on:submit="editSifarnik" class="margin">
   <div class="well">
   <alert v-if="alert" v-bind:message="alert"/>
     <h4>breed</h4>
@@ -21,7 +25,7 @@
       <input type="text" class="form-control" placeholder="description" v-model="sifarnik.description">
     </div>
   </div>
-  <input type="submit" value="Izmeni" class="btn btn-primary"><div class="razmak"></div>
+  <input type="submit" value="Izmeni" class="btn-sm btn-primary"><div class="razmak"></div>
 </form>
 
   </div>
@@ -78,4 +82,14 @@ export default {
 	width: 100%;
 	height: 15px;
 }
+
+@media (min-width: 768px){
+.height{
+  margin-left: -100px;
+  }
+.height1{
+  margin-top: -65px;
+  }
+}
+
 </style>
