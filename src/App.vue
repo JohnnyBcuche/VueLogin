@@ -28,16 +28,20 @@ export default {
   margin: 10px auto;
 }
 .font{
-  font-size: 25px;
+  font-size: 30px;
 }
 .container-width{
   width: 90%;
   word-wrap: break-word;
+  text-align: justify;
 }
 .table{
   table-layout: fixed;
   word-wrap: break-word;
   text-align: justify;
+}
+.center{
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -72,6 +76,12 @@ export default {
   table-layout: fixed;
   word-wrap: break-word;
   text-align: justify;
+  }
+}
+
+@media (max-width: 1080px){
+.none{
+  display: none;
   }
 }
 

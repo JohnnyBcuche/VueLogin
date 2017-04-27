@@ -1,8 +1,10 @@
 <template>
-<div class="addSifarnik container margin container-width"><div class="razmak"></div>
-<alert v-if="alert" v-bind:message="alert"/>
-<h1 class="page-header">Dodaj sifarnik</h1>
-<form v-on:submit="addSifarnik">
+<div class="addSifarnik container container-width"><div class="razmak"></div>
+<alert v-if="alert" v-bind:message="alert" class="margin"/>
+<div class="razmak"></div>
+<h1 class="page-header margin">Dodaj sifarnik</h1>
+<div class="razmak"></div>
+<form v-on:submit="addSifarnik" class="margin">
 	<div class="well">
 		<h4>Pasmina</h4>
 		<div class="form-group">
@@ -17,7 +19,7 @@
 			<input type="text" class="form-control" placeholder="description" v-model="sifarnik.description">
 		</div>
 	</div>
-	<input type="submit" value="Dodaj" class="btn btn-primary"><div class="razmak"></div>
+	<input type="submit" value="Dodaj" class="btn-sm btn-primary"><div class="razmak"></div>
 </form>
 </div>
 </template>

@@ -6,7 +6,7 @@
 <label>Username:</label><input type="text" v-model='newUser.username' class="form-control" placeholder="Enter username"><br><div class="razmak"></div>
 <label>Email:</label><input type="text" v-model='newUser.email' class="form-control" placeholder="Enter e-mail"><br><div class="razmak"></div>
 <label>Password:</label><input type="text" v-model='newUser.password' class="form-control" placeholder="Enter password"><br><div class="razmak"></div>
-<input type="submit" value="Sign Up" class="btn-primary btn-xs"><div class="razmak"></div>
+<input type="submit" value="Sign Up" class="btn-primary btn-sm"><div class="razmak"></div>
 </fieldset>
 </form>
 <ul>

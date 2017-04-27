@@ -5,7 +5,7 @@
 <fieldset class="container text-center">
 <label>Username:</label><input type="text" v-model="newUser.email" class="form-control" placeholder="Enter username"><br><div class="razmak"></div>
 <label>Password:</label><input type="password" v-model="newUser.password" class="form-control" placeholder="Enter password"><br><div class="razmak"></div>
-<input type="submit" value="LogIn" class="btn-xs btn-primary"><div class="razmak"></div>
+<input type="submit" value="LogIn" class="btn-sm btn-primary"><div class="razmak"></div>
 <h2 v-text = "poruka"></h2>
 </fieldset>
 </form>
