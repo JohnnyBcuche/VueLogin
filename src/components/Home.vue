@@ -13,30 +13,32 @@
 
 <div class="margin">
 <table class="table table-bordered table-striped">
+  <thead>
+  	<tr>
+  		<th width="35%" v-on:click="orderBreed = !orderBreed">Pasmina <i class="pull-right glyphicon" :class="[orderBreed?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
+      <th width="55%" v-on:click="orderDescription = !orderDescription">Opis <i class="pull-right glyphicon" :class="[orderDescription?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
+      <th width="10%" class="center"><div class="none">Izmeni</div></th>
+  	</tr>
+  </thead>
+  <tbody v-for="field in filterBy(showMore(sifarnik, startingLimiter), filterInput)">
+  	<tr class="table-width">
+  		<td>{{field.breed}}</td>
+  		<td>{{field.description}}</td>
+  		<td class="center"><router-link v-bind:to="'/editSifarnik/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
+  	</tr>
+  </tbody>
+</table>
 
- <thead>
-	<tr>
-		<th width="35%" v-on:click="orderBreed = !orderBreed">Pasmina <i class="pull-right glyphicon" :class="[orderBreed?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
-    <th width="55%" v-on:click="orderDescription = !orderDescription">Opis <i class="pull-right glyphicon" :class="[orderDescription?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
-    <th width="10%" class="center"><div class="none">Izmeni</div></th>
-	</tr>
-</thead>
-<tbody v-for="field in filterBy(showMore(sifarnik, startingLimiter), filterInput)">
-	<tr class="table-width">
-		<td>{{field.id}}  {{field.breed}}</td>
-		<td>{{field.description}}</td>
-		<td class="center"><router-link v-bind:to="'/editSifarnik/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
-	</tr>
-</tbody><div class="btn-group btn-group-justified" role="group" aria-label="...">
-<div class="btn-group" role="group">
-    <button type="button" class="btn btn-default" v-on:click="startingLimiter += jumpLimiter">Show more</button>
-  </div>
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default" v-on:click="startingLimiter = sifarnik.length" >Show all</button>
-  </div>
-</div>
+<table class="table table-bordered showButtons" v-if="startingLimiter < sifarnik.length"> 
+<tbody v-if="filterInput == ''">
+  <tr class="bg-info text-center text-primary">
+    <td v-on:click="startingLimiter += jumpLimiter" ><strong>Show more</strong></td>
+    <td v-on:click="startingLimiter = sifarnik.length" ><strong>Show all</strong></td>
+  </tr>
+</tbody>
     </table>
 </div>
+<div class="razmak"></div>
 <router-link class="btn btn-primary margin" to="/addSifarnik">Dodaj</router-link><div class="razmak"></div>
 </div>
 </template>
@@ -105,9 +107,8 @@ export default {
       });
     },
     showMore: function(list, limit){
-      if($.trim($("#search").val()) != "")
-        return list;
-      else
+      if(this.filterInput != "")
+        limit = list.length;
       return list.slice(0, limit);
     }
   },
@@ -130,5 +131,11 @@ export default {
 .razmak{
 	width: 100%;
 	height: 15px;
+}
+.showButtons td{
+  border: 1px solid blue !important;
+}
+.table{
+  margin-bottom: 0px !important;
 }
 </style>
