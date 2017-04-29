@@ -56,9 +56,9 @@ export default {
       orderDescription:false,
       resource_url: 'http://localhost/slim/public/api/codes',
       //Number of elements to show after clicking show more
-      jumpLimiter: 5,
+      jumpLimiter: 10,
       //Starting number of elements
-      startingLimiter: 5,
+      startingLimiter: 10,
       counter: 1
     }
   },
@@ -81,9 +81,10 @@ export default {
   		});
   	},
     filterBy(list, value){
-      value = value.toLowerCase();
-      return list.filter(function(sifarnik){
-      return (sifarnik.breed.toLowerCase().indexOf(value) > -1) || (sifarnik.description.toLowerCase().indexOf(value) > -1);
+      var metaphone = require('metaphone');
+      value = metaphone(value);
+      return list.filter(function(table){
+      return (metaphone(table.breed).indexOf(value) > -1) || (metaphone(table.description).indexOf(value) > -1);
       });
     },
     sortBy: function(array, param, reverse) {
