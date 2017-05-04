@@ -27,6 +27,9 @@ export default {
 .margin{
   margin: 10px auto;
 }
+.SearchWidth{
+  width: 245px;
+}
 .font{
   font-size: 30px;
 }
@@ -43,6 +46,20 @@ export default {
 .center{
   text-align: center;
 }
+.nav > li > a{
+  color: #9D9D9D;
+}
+.nav > li > a:hover{
+  color: white;
+  background-color: inherit;
+}
+.dropdown{
+  margin-top: -25px;
+}
+.dropdown li {
+  font-size: 14px;
+  line-height: 20px;
+}
 
 @media (min-width: 768px) {
 .navbar-left{
@@ -55,7 +72,6 @@ export default {
   display: inline-block;
   }
 .navbar-inverse .navbar-nav > li > a:hover {
-  border: 1px solid #9d9d9d;
   width: 160px;
   }
 .margin{
@@ -77,11 +93,46 @@ export default {
   word-wrap: break-word;
   text-align: justify;
   }
+.nav > li > a{
+  color: #9D9D9D;
+  }
+.nav > li > a:hover{
+  color: white;
+  background-color: inherit;
+  }
+.dropdown{
+  margin-top: -25px;
+  }
+.dropdown li {
+  font-size: 20px;
+  }
 }
 
 @media (max-width: 1080px){
 .none{
   display: none;
+  }
+}
+
+@media (max-width: 520px){
+.SearchWidth{
+  width: auto;
+  }
+.addbutton{
+  width: 100%;
+  }
+.pasmina-link{
+  display: none;
+  }
+.navbar-nav {
+  font-size: 17px;
+  line-height: 10px;
+  display: block;
+  margin: 0 auto 0 50%;
+  }
+.dropdown li {
+  font-size: 15px;
+  line-height: 20px;
   }
 }
 
