@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
 <div class="container container-width">
 <div class="razmak"></div>
@@ -176,3 +177,5 @@ export default {
   margin-bottom: 0px !important;
 }
 </style>
+=======
+>>>>>>> 5084ff8608047d924689ab80b660af0be6ca352c

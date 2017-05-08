@@ -2,7 +2,7 @@
   <div class="container editSifarnik container-width"><div class="razmak"></div>
 
   <div class="margin">
-  <router-link to="/"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
+  <router-link to="/pasmina"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
   <div class="height1"><h3><b>Pasmina:</b></h3> <h4>{{sifarnik.breed}}</h4><h3><b>Opis:</b></h3> <h4>{{sifarnik.description}}</h4></div>
   </div>
 
@@ -47,11 +47,19 @@ export default {
     this.sifarnik=response.data;
       });
     },
+<<<<<<< HEAD
     deleteSifarnik(id){
     this.$http.delete('http://localhost/slim/public/api/code/delete/'+id).then(function(response){
       this.$router.push({path: '/', query:{alert: "Sifarnik izbrisan!"}})
     });
     },
+=======
+      deleteSifarnik(id){
+      this.$http.delete('http://localhost/slim/public/api/code/delete/'+id).then(function(response){
+        this.$router.push({path: '/pasmina', query:{alert: "Sifarnik izbrisan!"}})
+      });
+      },
+>>>>>>> 5084ff8608047d924689ab80b660af0be6ca352c
 
     editSifarnik(e){
       if(!this.sifarnik.breed || !this.sifarnik.description){
@@ -59,7 +67,7 @@ export default {
       } else{
         let updateSifarnik = JSON.stringify({ breed: this.sifarnik.breed, description: this.sifarnik.description });
       this.$http.put('http://localhost/slim/public/api/code/'+this.$route.params.id, updateSifarnik).then(function(response){
-        this.$router.push({path: '/', query:{alert:'Sifranik je izmenjen'}});
+        this.$router.push({path: '/pasmina', query:{alert:'Sifranik je izmenjen'}});
       });
         e.preventDefault();
       }

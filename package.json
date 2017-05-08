@@ -9,7 +9,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+<<<<<<< HEAD
     "lodash": "^4.17.4",
+=======
+    "metaphone": "^1.0.1",
+>>>>>>> 5084ff8608047d924689ab80b660af0be6ca352c
     "node-sass": "^4.5.2",
     "sass-loader": "^6.0.3",
     "vue": "^2.2.2",
