@@ -1,0 +1,8 @@
+search srediti
+dodaj premestiti u gornji desni ugao
+paginacija
+autoloading - za paginaciju
+oauth - login i logout
+pod home treba staviti podmeni
+sifarnik za psa
+treba da se poveze sa pasmin kada se dodaje da se stavi search koji ce da skracuje rezultate slovo po slovo

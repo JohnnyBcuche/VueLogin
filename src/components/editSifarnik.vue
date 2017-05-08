@@ -47,11 +47,11 @@ export default {
     this.sifarnik=response.data;
       });
     },
-      deleteSifarnik(id){
-      this.$http.delete('http://localhost/slim/public/api/code/delete/'+id).then(function(response){
-        this.$router.push({path: '/', query:{alert: "Sifarnik izbrisan!"}})
-      });
-      },
+    deleteSifarnik(id){
+    this.$http.delete('http://localhost/slim/public/api/code/delete/'+id).then(function(response){
+      this.$router.push({path: '/', query:{alert: "Sifarnik izbrisan!"}})
+    });
+    },
 
     editSifarnik(e){
       if(!this.sifarnik.breed || !this.sifarnik.description){
