@@ -177,4 +177,7 @@ export default {
 .table{
   margin-bottom: 0px !important;
 }
+.spoji{
+  display: inline;
+}
 </style>
