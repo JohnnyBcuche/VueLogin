@@ -1,5 +1,5 @@
 <template>
-<div class="addData container container-width"><div class="razmak"></div>
+<div class="addBreed container container-width"><div class="razmak"></div>
 <alert v-if="alert" v-bind:message="alert" class="margin"/>
 <div class="razmak"></div>
 <div class="margin">
@@ -7,7 +7,7 @@
 </div>
 <h1 class="page-header margin">Dodaj Data</h1>
 <div class="razmak"></div>
-<form v-on:submit="addData" class="margin">
+<form v-on:submit="addBreed" class="margin">
 	<div class="well">
 		<h4>Pasmina</h4>
 		<div class="form-group">
@@ -28,7 +28,7 @@
 <script>
 import alert from '../alert'
 export default {
-  name: 'addData',
+  name: 'addBreed',
   data () {
     return {
     	title: 'Home page.',
@@ -37,7 +37,7 @@ export default {
     }
   },
   methods:{
-  	addData(e){
+  	addBreed(e){
   		if(!this.Data.breed || !this.Data.description){
   			this.alert = "Sva polja moraju biti popunjena";
   		} else{

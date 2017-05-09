@@ -1,5 +1,5 @@
 <template>
-  <div class="container editData container-width"><div class="razmak"></div>
+  <div class="container editBreed container-width"><div class="razmak"></div>
 
   <div class="margin">
   <router-link to="/breed"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
@@ -11,10 +11,10 @@
   <div class="razmak"></div>
 
   
-  <form v-on:submit="editData" class="margin">
+  <form v-on:submit="editBreed" class="margin">
   <div class="well">
   <alert v-if="alert" v-bind:message="alert"/>
-    <h4>breed</h4>
+    <h4>Breed</h4>
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Ime breed" v-model="Data.breed">
     </div>
@@ -34,7 +34,7 @@
 <script>
 import alert from '../alert'
 export default {
-  name: 'editData',
+  name: 'editBreed',
   data () {
     return {
       Data: '',
@@ -52,7 +52,7 @@ export default {
       this.$router.push({path: '/breed', query:{alert: "Data izbrisan!"}})
     });
     },
-    editData(e){
+    editBreed(e){
       if(!this.Data.breed || !this.Data.description){
         this.alert = "Sva polja moraju biti popunjena";
       } else{

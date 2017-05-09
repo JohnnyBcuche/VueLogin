@@ -10,7 +10,7 @@
           <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
       </div>
   </div>
-  <router-link class="btn btn-primary margin pull-right addbutton" to="/addData">Dodaj</router-link>
+  <router-link class="btn btn-primary margin pull-right addbutton" to="/addBreed">Dodaj</router-link>
 </div>
   <!--End of Search-->
 <div class="razmak"></div>
@@ -59,7 +59,7 @@
     <tr class="table-width">
       <td>{{field.breed}}</td>
       <td>{{field.description}}</td>
-      <td class="center"><router-link v-bind:to="'/editData/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
+      <td class="center"><router-link v-bind:to="'/editBreed/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
     </tr>
   </tbody>
 </table>

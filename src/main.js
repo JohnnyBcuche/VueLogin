@@ -11,10 +11,12 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Logged from './components/Logged'
-import AddSifarnik from './components/breed/addSifarnik'
-import EditSifarnik from './components/breed/editSifarnik'
+import AddBreed from './components/breed/addBreed'
+import EditBreed from './components/breed/editBreed'
 import breed from './components/breed/breed'
 import animal from './components/animal/animal'
+import addAnimal from './components/animal/addAnimal'
+import editAnimal from './components/animal/editAnimal'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
@@ -29,10 +31,12 @@ const router = new VueRouter({
 		{path: '/signup', component: Signup},
 		{path: '/login', component: Login},
     {path: '/logged', component: Logged},
-    {path: '/addSifarnik', component: AddSifarnik},
-    {path: '/editSifarnik/:id', component: EditSifarnik},
+    {path: '/addBreed', component: AddBreed},
+    {path: '/editBreed/:id', component: EditBreed},
     {path: '/breed', component: breed},
     {path: '/animal', component: animal},
+    {path: '/addAnimal', component: addAnimal},
+    {path: '/editAnimal/:id', component: editAnimal},
 	]
 });
 
