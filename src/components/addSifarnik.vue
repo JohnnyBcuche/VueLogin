@@ -2,6 +2,9 @@
 <div class="addSifarnik container container-width"><div class="razmak"></div>
 <alert v-if="alert" v-bind:message="alert" class="margin"/>
 <div class="razmak"></div>
+<div class="margin">
+  <router-link to="/breed"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
+</div>
 <h1 class="page-header margin">Dodaj sifarnik</h1>
 <div class="razmak"></div>
 <form v-on:submit="addSifarnik" class="margin">
