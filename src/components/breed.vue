@@ -12,9 +12,11 @@
   </div>
   <router-link class="btn btn-primary margin pull-right addbutton" to="/addSifarnik">Dodaj</router-link>
 </div>
+  <!--End of Search-->
 <div class="razmak"></div>
 <div class="margin">
 
+  <!--Pagination-->
 <nav aria-label="Page navigation">
   <ul class="pagination">
     <li v-if="pageNumber <= 1" class="disabled">
@@ -43,8 +45,8 @@
     </li>
   </ul>
 </nav>
+  <!--End of pagination-->
 
-<input type="text" v-on:input="goToPage(pageNumber)" v-model="pageNumber">
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -74,32 +76,40 @@ export default {
   name: 'home',
   data () {
     return {
+      //used to take in items from database
       sifarnik: [],
-      pagination: [],
+      /*=======================================================
+      =            used to determin order of items            =
+      =======================================================*/
       orderBy: 'id',
       orderDirection: 'ASC',
-      orderCount: false,
+      orderCount: false,  
+      
+      /*=====  End of used to determin order of items  ======*/
+      
+
+      //curently selected page
       pageNumber: '',
+      //used to check if the pagination link was already clicked
       executed: false,
+
+      //for displaying message after changing items (CRUD)
       alert: '',
+
+      //variable to store search input
       filterInput: '',
-      filterKey: '',
+
       resource_url: 'http://localhost/slim/public/api/codes',
-      //Number of elements to show after clicking show more
-      jumpLimiter: 10,
-      //Starting number of elements
-      startingLimiter: 12,
-      counter: 1
     }
   },
   methods:{
-    //fetch all data from restful api
+    //fetches all data from restful api and passes in the params
     fetchSifarnik(url){
       this.$http.get(url, {params:  {orderBy: this.orderBy, direction: this.orderDirection, search: this.filterInput}}).then(function(response){
       this.sifarnik=response.data;
       });
     },
-    //method to go to the next page of the restful api
+    //method to go to the next page of the restful api - only executes on first click
     nextPage(){
       if(this.sifarnik.next_page_url != null && !this.executed)
       {
@@ -113,7 +123,7 @@ export default {
           this.pageNumber++;
       }
     },
-    //method to go to the previous page of the restful api
+    //method to go to the previous page of the restful api - only executes on first click
     previousPage(){
       if(this.sifarnik.prev_page_url !=null && !this.executed)
       {
@@ -127,7 +137,7 @@ export default {
           this.pageNumber--;
       }
     },
-    //method to go to the selected page of the restful api
+    //method to go to the selected page of the restful api - only executes on first click
     goToPage(number){
       if(number > this.sifarnik.last_page)
         number = this.sifarnik.last_page;
@@ -141,6 +151,7 @@ export default {
         this.executed = false;
         this.pageNumber = number;
     },
+    //searches the table 
     searchTable(value){
       if(value != null)
       {
@@ -160,12 +171,8 @@ export default {
       }
         this.fetchSifarnik(this.resource_url, {params:  {orderBy: this.orderBy, direction: this.orderDirection}});
     },
-    /*showMore: function(list, limit){
-      if(this.filterInput != "")
-        limit = list.length;
-      return list.slice(0, limit);
-    },*/
   },
+  //created is used to load fields when page loads
   created: function(){
     if(this.$route.query.alert){
       this.alert = this.$route.query.alert;
