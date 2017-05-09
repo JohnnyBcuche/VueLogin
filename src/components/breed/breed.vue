@@ -10,7 +10,7 @@
           <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
       </div>
   </div>
-  <router-link class="btn btn-primary margin pull-right addbutton" to="/addSifarnik">Dodaj</router-link>
+  <router-link class="btn btn-primary margin pull-right addbutton" to="/addData">Dodaj</router-link>
 </div>
   <!--End of Search-->
 <div class="razmak"></div>
@@ -30,10 +30,10 @@
       </a>
     </li>
 
-    <li v-for="item in sifarnik.last_page" v-on:click="goToPage(item)" v-if="item === pageNumber" class="active"><a>{{item}}</a></li>
+    <li v-for="item in Data.last_page" v-on:click="goToPage(item)" v-if="item === pageNumber" class="active"><a>{{item}}</a></li>
     <li v-else v-on:click="goToPage(item)" ><a>{{item}}</a></li>
 
-    <li v-if="pageNumber >= sifarnik.last_page" class="disabled">
+    <li v-if="pageNumber >= Data.last_page" class="disabled">
       <a aria-label="Next" v-on:click="nextPage">
         <span aria-hidden="true">&raquo;</span>
       </a>
@@ -55,11 +55,11 @@
       <th width="10%" class="center"><div class="none">Izmeni</div></th>
     </tr>
   </thead>
-  <tbody v-for="field in sifarnik.data">
+  <tbody v-for="field in Data.data">
     <tr class="table-width">
       <td>{{field.breed}}</td>
       <td>{{field.description}}</td>
-      <td class="center"><router-link v-bind:to="'/editSifarnik/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
+      <td class="center"><router-link v-bind:to="'/editData/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
     </tr>
   </tbody>
 </table>
@@ -77,7 +77,7 @@ export default {
   data () {
     return {
       //used to take in items from database
-      sifarnik: [],
+      Data: [],
       /*=======================================================
       =            used to determin order of items            =
       =======================================================*/
@@ -104,33 +104,33 @@ export default {
   },
   methods:{
     //fetches all data from restful api and passes in the params
-    fetchSifarnik(url){
+    fetchData(url){
       this.$http.get(url, {params:  {orderBy: this.orderBy, direction: this.orderDirection, search: this.filterInput}}).then(function(response){
-      this.sifarnik=response.data;
+      this.Data=response.data;
       });
     },
     //method to go to the next page of the restful api - only executes on first click
     nextPage(){
-      if(this.sifarnik.next_page_url != null && !this.executed)
+      if(this.Data.next_page_url != null && !this.executed)
       {
         this.executed = true;
         let url = this.resource_url;
-        this.resource_url = this.resource_url + this.sifarnik.next_page_url;
-        this.fetchSifarnik(this.resource_url);
+        this.resource_url = this.resource_url + this.Data.next_page_url;
+        this.fetchData(this.resource_url);
         this.resource_url = url;
         this.executed = false;
-        if(this.pageNumber < this.sifarnik.last_page)
+        if(this.pageNumber < this.Data.last_page)
           this.pageNumber++;
       }
     },
     //method to go to the previous page of the restful api - only executes on first click
     previousPage(){
-      if(this.sifarnik.prev_page_url !=null && !this.executed)
+      if(this.Data.prev_page_url !=null && !this.executed)
       {
         this.executed = true;
         let url = this.resource_url;
-        this.resource_url = this.resource_url + this.sifarnik.prev_page_url;
-        this.fetchSifarnik(this.resource_url);
+        this.resource_url = this.resource_url + this.Data.prev_page_url;
+        this.fetchData(this.resource_url);
         this.resource_url = url;
         this.executed = false;
         if(this.pageNumber > 1)
@@ -139,14 +139,14 @@ export default {
     },
     //method to go to the selected page of the restful api - only executes on first click
     goToPage(number){
-      if(number > this.sifarnik.last_page)
-        number = this.sifarnik.last_page;
+      if(number > this.Data.last_page)
+        number = this.Data.last_page;
       else if(number < 1)
         number = 1;
         this.executed = true;
         let url = this.resource_url;
         this.resource_url = this.resource_url + "?page="+parseInt(number);
-        this.fetchSifarnik(this.resource_url);
+        this.fetchData(this.resource_url);
         this.resource_url = url;
         this.executed = false;
         this.pageNumber = number;
@@ -156,7 +156,7 @@ export default {
       if(value != null)
       {
         this.filterInput = value;
-        this.fetchSifarnik(this.resource_url, {params:  {search: this.filterInput}});
+        this.fetchData(this.resource_url, {params:  {search: this.filterInput}});
       }
     },
     sortBy: function(value) {
@@ -169,7 +169,7 @@ export default {
         this.orderDirection = 'DESC';
         this.orderCount = false;
       }
-        this.fetchSifarnik(this.resource_url, {params:  {orderBy: this.orderBy, direction: this.orderDirection}});
+        this.fetchData(this.resource_url, {params:  {orderBy: this.orderBy, direction: this.orderDirection}});
     },
   },
   //created is used to load fields when page loads
@@ -177,7 +177,7 @@ export default {
     if(this.$route.query.alert){
       this.alert = this.$route.query.alert;
     }
-    this.fetchSifarnik(this.resource_url);
+    this.fetchData(this.resource_url);
     this.pageNumber = 1;
   },
   components: {
