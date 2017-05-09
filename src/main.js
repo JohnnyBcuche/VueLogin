@@ -11,10 +11,10 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Logged from './components/Logged'
-import AddSifarnik from './components/addSifarnik'
-import EditSifarnik from './components/editSifarnik'
-import breed from './components/breed'
-import Vrsta from './components/Vrsta'
+import AddSifarnik from './components/breed/addSifarnik'
+import EditSifarnik from './components/breed/editSifarnik'
+import breed from './components/breed/breed'
+import animal from './components/animal/animal'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
@@ -32,7 +32,7 @@ const router = new VueRouter({
     {path: '/addSifarnik', component: AddSifarnik},
     {path: '/editSifarnik/:id', component: EditSifarnik},
     {path: '/breed', component: breed},
-    {path: '/vrsta', component: Vrsta},
+    {path: '/animal', component: animal},
 	]
 });
 
@@ -56,7 +56,7 @@ new Vue({
         <a href="#">Menu<i class="fa fa-fw fa-caret-down"></i></a>
           <ul id="demos" class="collapse nav dropdown">
               <li><router-link to="/breed">Pasmina</router-link></li>
-              <li><router-link to="/vrsta">Vrsta psa</router-link></li>
+              <li><router-link to="/animal">Zivotinja</router-link></li>
           </ul>
         </li><br>
 

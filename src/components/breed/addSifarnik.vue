@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import alert from './alert'
+import alert from '../alert'
 export default {
   name: 'addSifarnik',
   data () {
