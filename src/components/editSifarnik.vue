@@ -2,7 +2,7 @@
   <div class="container editSifarnik container-width"><div class="razmak"></div>
 
   <div class="margin">
-  <router-link to="/pasmina"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
+  <router-link to="/breed"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
   <div class="height1"><h3><b>Pasmina:</b></h3> <h4>{{sifarnik.breed}}</h4><h3><b>Opis:</b></h3> <h4>{{sifarnik.description}}</h4></div>
   </div>
 
