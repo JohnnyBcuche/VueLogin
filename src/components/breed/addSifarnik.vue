@@ -1,23 +1,23 @@
 <template>
-<div class="addSifarnik container container-width"><div class="razmak"></div>
+<div class="addData container container-width"><div class="razmak"></div>
 <alert v-if="alert" v-bind:message="alert" class="margin"/>
 <div class="razmak"></div>
 <div class="margin">
   <router-link to="/breed"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
 </div>
-<h1 class="page-header margin">Dodaj sifarnik</h1>
+<h1 class="page-header margin">Dodaj Data</h1>
 <div class="razmak"></div>
-<form v-on:submit="addSifarnik" class="margin">
+<form v-on:submit="addData" class="margin">
 	<div class="well">
 		<h4>Pasmina</h4>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="breed" v-model="sifarnik.breed">
+			<input type="text" class="form-control" placeholder="breed" v-model="Data.breed">
 		</div>
 	</div>
 	<div class="well">
 		<h4>Opis</h4>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="description" v-model="sifarnik.description">
+			<input type="text" class="form-control" placeholder="description" v-model="Data.description">
 		</div>
 	</div>
 	<input type="submit" value="Dodaj" class="btn-sm btn-primary"><div class="razmak"></div>
@@ -28,21 +28,21 @@
 <script>
 import alert from '../alert'
 export default {
-  name: 'addSifarnik',
+  name: 'addData',
   data () {
     return {
     	title: 'Home page.',
-		  sifarnik: {},
+		  Data: {},
       alert: '',
     }
   },
   methods:{
-  	addSifarnik(e){
-  		if(!this.sifarnik.breed || !this.sifarnik.description){
+  	addData(e){
+  		if(!this.Data.breed || !this.Data.description){
   			this.alert = "Sva polja moraju biti popunjena";
   		} else{
-  			let newSifarnik = JSON.stringify({ breed: this.sifarnik.breed, description: this.sifarnik.description });
-  		this.$http.post('http://localhost/slim/public/api/code', newSifarnik).then(function(response){
+  			let newData = JSON.stringify({ breed: this.Data.breed, description: this.Data.description });
+  		this.$http.post('http://localhost/slim/public/api/code', newData).then(function(response){
   			this.$router.push({path: '/breed', query:{alert:'Sifranik je dodan'}});
   		});
   			e.preventDefault();

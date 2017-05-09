@@ -1,28 +1,28 @@
 <template>
-  <div class="container editSifarnik container-width"><div class="razmak"></div>
+  <div class="container editData container-width"><div class="razmak"></div>
 
   <div class="margin">
   <router-link to="/breed"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
-  <div class="height1"><h3><b>Pasmina:</b></h3> <h4>{{sifarnik.breed}}</h4><h3><b>Opis:</b></h3> <h4>{{sifarnik.description}}</h4></div>
+  <div class="height1"><h3><b>Pasmina:</b></h3> <h4>{{Data.breed}}</h4><h3><b>Opis:</b></h3> <h4>{{Data.description}}</h4></div>
   </div>
 
   <div class="razmak"></div>
-  <span><button v-on:click="deleteSifarnik(sifarnik.id)" class="btn-sm btn-danger margin">Izbrisi</button></span>
+  <span><button v-on:click="deleteData(Data.id)" class="btn-sm btn-danger margin">Izbrisi</button></span>
   <div class="razmak"></div>
 
   
-  <form v-on:submit="editSifarnik" class="margin">
+  <form v-on:submit="editData" class="margin">
   <div class="well">
   <alert v-if="alert" v-bind:message="alert"/>
     <h4>breed</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Ime breed" v-model="sifarnik.breed">
+      <input type="text" class="form-control" placeholder="Ime breed" v-model="Data.breed">
     </div>
   </div>
   <div class="well">
     <h4>Opis</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="description" v-model="sifarnik.description">
+      <input type="text" class="form-control" placeholder="description" v-model="Data.description">
     </div>
   </div>
   <input type="submit" value="Izmeni" class="btn-sm btn-primary"><div class="razmak"></div>
@@ -34,30 +34,30 @@
 <script>
 import alert from '../alert'
 export default {
-  name: 'editSifarnik',
+  name: 'editData',
   data () {
     return {
-      sifarnik: '',
+      Data: '',
       alert: ''
     }
   },
   methods:{
-    fetchSifarnik(id){
+    fetchData(id){
       this.$http.get('http://localhost/slim/public/api/code/'+id).then(function(response){
-    this.sifarnik=response.data;
+    this.Data=response.data;
       });
     },
-    deleteSifarnik(id){
+    deleteData(id){
     this.$http.delete('http://localhost/slim/public/api/code/delete/'+id).then(function(response){
-      this.$router.push({path: '/breed', query:{alert: "Sifarnik izbrisan!"}})
+      this.$router.push({path: '/breed', query:{alert: "Data izbrisan!"}})
     });
     },
-    editSifarnik(e){
-      if(!this.sifarnik.breed || !this.sifarnik.description){
+    editData(e){
+      if(!this.Data.breed || !this.Data.description){
         this.alert = "Sva polja moraju biti popunjena";
       } else{
-        let updateSifarnik = JSON.stringify({ breed: this.sifarnik.breed, description: this.sifarnik.description });
-      this.$http.put('http://localhost/slim/public/api/code/'+this.$route.params.id, updateSifarnik).then(function(response){
+        let updateData = JSON.stringify({ breed: this.Data.breed, description: this.Data.description });
+      this.$http.put('http://localhost/slim/public/api/code/'+this.$route.params.id, updateData).then(function(response){
         this.$router.push({path: '/breed', query:{alert:'Sifranik je izmenjen'}});
       });
         e.preventDefault();
@@ -70,7 +70,7 @@ export default {
     alert
   },
   created: function(){
-    this.fetchSifarnik(this.$route.params.id);
+    this.fetchData(this.$route.params.id);
 	}
 }
 </script>
