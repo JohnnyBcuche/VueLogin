@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import alert from './alert'
+import alert from '../alert'
 import InfiniteLoading from 'vue-infinite-loading';
 export default {
   name: 'home',
