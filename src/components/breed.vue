@@ -5,7 +5,7 @@
 <div class="spoji container">
   <div class="input-group margin SearchWidth pull-left">
   <!--Search-->
-      <input type="text" class="form-control" id='search' placeholder="Search" v-on:input="debounceInput" v-model="filterInput" name="q">
+      <input type="text" class="form-control" id='search' placeholder="Search" v-on:input="searchTable(filterInput)" v-model="filterInput" name="q">
       <div class="input-group-btn">
           <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
       </div>
@@ -17,13 +17,26 @@
 
 <nav aria-label="Page navigation">
   <ul class="pagination">
-    <li>
+    <li v-if="pageNumber <= 1" class="disabled">
       <a aria-label="Previous" v-on:click="previousPage">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li v-for="item in sifarnik.last_page" v-on:click="goToPage(item)"><a>{{item}}</a></li>
-    <li>
+    <li v-else>
+      <a aria-label="Previous" v-on:click="previousPage">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <li v-for="item in sifarnik.last_page" v-on:click="goToPage(item)" v-if="item === pageNumber" class="active"><a>{{item}}</a></li>
+    <li v-else v-on:click="goToPage(item)" ><a>{{item}}</a></li>
+
+    <li v-if="pageNumber >= sifarnik.last_page" class="disabled">
+      <a aria-label="Next" v-on:click="nextPage">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <li v-else>
       <a aria-label="Next" v-on:click="nextPage">
         <span aria-hidden="true">&raquo;</span>
       </a>
@@ -80,12 +93,9 @@ export default {
     }
   },
   methods:{
-    debounceInput: _.debounce(() => {
-      this.filterKey = this.filterInput;
-    }, 2000),
     //fetch all data from restful api
     fetchSifarnik(url){
-      this.$http.get(url, {params:  {orderBy: this.orderBy, direction: this.orderDirection}}).then(function(response){
+      this.$http.get(url, {params:  {orderBy: this.orderBy, direction: this.orderDirection, search: this.filterInput}}).then(function(response){
       this.sifarnik=response.data;
       });
     },
@@ -99,6 +109,8 @@ export default {
         this.fetchSifarnik(this.resource_url);
         this.resource_url = url;
         this.executed = false;
+        if(this.pageNumber < this.sifarnik.last_page)
+          this.pageNumber++;
       }
     },
     //method to go to the previous page of the restful api
@@ -111,6 +123,8 @@ export default {
         this.fetchSifarnik(this.resource_url);
         this.resource_url = url;
         this.executed = false;
+        if(this.pageNumber > 1)
+          this.pageNumber--;
       }
     },
     //method to go to the selected page of the restful api
@@ -125,13 +139,14 @@ export default {
         this.fetchSifarnik(this.resource_url);
         this.resource_url = url;
         this.executed = false;
+        this.pageNumber = number;
     },
-    filterBy(list, value){
-      var metaphone = require('metaphone');
-      value = metaphone(value);
-      return list.filter(function(table){
-      return (metaphone(table.breed).indexOf(value) > -1) || (metaphone(table.description).indexOf(value) > -1);
-      });
+    searchTable(value){
+      if(value != null)
+      {
+        this.filterInput = value;
+        this.fetchSifarnik(this.resource_url, {params:  {search: this.filterInput}});
+      }
     },
     sortBy: function(value) {
       this.orderBy = value;
@@ -156,6 +171,7 @@ export default {
       this.alert = this.$route.query.alert;
     }
     this.fetchSifarnik(this.resource_url);
+    this.pageNumber = 1;
   },
   components: {
     alert,
