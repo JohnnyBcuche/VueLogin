@@ -47,27 +47,18 @@ export default {
     this.sifarnik=response.data;
       });
     },
-<<<<<<< HEAD
     deleteSifarnik(id){
     this.$http.delete('http://localhost/slim/public/api/code/delete/'+id).then(function(response){
-      this.$router.push({path: '/', query:{alert: "Sifarnik izbrisan!"}})
+      this.$router.push({path: '/breed', query:{alert: "Sifarnik izbrisan!"}})
     });
     },
-=======
-      deleteSifarnik(id){
-      this.$http.delete('http://localhost/slim/public/api/code/delete/'+id).then(function(response){
-        this.$router.push({path: '/pasmina', query:{alert: "Sifarnik izbrisan!"}})
-      });
-      },
->>>>>>> 5084ff8608047d924689ab80b660af0be6ca352c
-
     editSifarnik(e){
       if(!this.sifarnik.breed || !this.sifarnik.description){
         this.alert = "Sva polja moraju biti popunjena";
       } else{
         let updateSifarnik = JSON.stringify({ breed: this.sifarnik.breed, description: this.sifarnik.description });
       this.$http.put('http://localhost/slim/public/api/code/'+this.$route.params.id, updateSifarnik).then(function(response){
-        this.$router.push({path: '/pasmina', query:{alert:'Sifranik je izmenjen'}});
+        this.$router.push({path: '/breed', query:{alert:'Sifranik je izmenjen'}});
       });
         e.preventDefault();
       }

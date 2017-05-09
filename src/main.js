@@ -13,7 +13,7 @@ import Signup from './components/Signup'
 import Logged from './components/Logged'
 import AddSifarnik from './components/addSifarnik'
 import EditSifarnik from './components/editSifarnik'
-import Pasmina from './components/Pasmina'
+import breed from './components/breed'
 import Vrsta from './components/Vrsta'
 
 Vue.use(vueResource)
@@ -31,7 +31,7 @@ const router = new VueRouter({
     {path: '/logged', component: Logged},
     {path: '/addSifarnik', component: AddSifarnik},
     {path: '/editSifarnik/:id', component: EditSifarnik},
-    {path: '/pasmina', component: Pasmina},
+    {path: '/breed', component: breed},
     {path: '/vrsta', component: Vrsta},
 	]
 });
@@ -55,7 +55,7 @@ new Vue({
         <li data-toggle="collapse" data-target="#demos">
         <a href="#">Menu<i class="fa fa-fw fa-caret-down"></i></a>
           <ul id="demos" class="collapse nav dropdown">
-              <li><router-link to="/pasmina">Pasmina</router-link></li>
+              <li><router-link to="/breed">Pasmina</router-link></li>
               <li><router-link to="/vrsta">Vrsta psa</router-link></li>
           </ul>
         </li><br>

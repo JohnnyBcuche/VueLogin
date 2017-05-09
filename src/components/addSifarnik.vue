@@ -40,7 +40,7 @@ export default {
   		} else{
   			let newSifarnik = JSON.stringify({ breed: this.sifarnik.breed, description: this.sifarnik.description });
   		this.$http.post('http://localhost/slim/public/api/code', newSifarnik).then(function(response){
-  			this.$router.push({path: '/pasmina', query:{alert:'Sifranik je dodan'}});
+  			this.$router.push({path: '/breed', query:{alert:'Sifranik je dodan'}});
   		});
   			e.preventDefault();
   		}
