@@ -3,7 +3,7 @@
 
   <div class="margin">
   <router-link to="/animal"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
-  <div class="height1"><h3><b>Zivotinja:</b></h3> <h4>{{Data.animal}}</h4><h3><b>Opis:</b></h3> <h4>{{Data.description}}</h4></div>
+  <div class="height1"><h3><b>Zivotinja:</b></h3> <h4>{{Data.animal}}</h4><h3><b>Opis:</b></h3> <h4>{{Data.animal_description}}</h4></div>
   </div>
 
   <div class="razmak"></div>
@@ -16,19 +16,19 @@
   <alert v-if="alert" v-bind:message="alert"/>
     <h4>Animal</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Ime animal" v-model="Data.name">
+      <input type="text" class="form-control" placeholder="Ime animal" v-model="Data.animal_name">
     </div>
   </div>
   <div class="well">
     <h4>Opis</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="description" v-model="Data.description">
+      <input type="text" class="form-control" placeholder="description" v-model="Data.animal_description">
     </div>
   </div>
   <div class="well">
     <h4>Pasmina</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="breed" v-model="Data.idsifarnik">
+      <input type="text" class="form-control" placeholder="breed" v-model="Data.sifarnik_id">
     </div>
   </div>
   <div class="well">
@@ -65,10 +65,10 @@ export default {
     });
     },
     editAnimal(e){
-      if(!this.Data.name || !this.Data.description || !this.Data.idsifarnik || !this.Data.date){
+      if(!this.Data.animal_name || !this.Data.animal_description || !this.Data.sifarnik_id || !this.Data.date){
         this.alert = "Sva polja moraju biti popunjena";
       } else{
-        let updateData = JSON.stringify({ name: this.Data.name, description: this.Data.description, idsifarnik: this.Data.idsifarnik, date: this.Data.date });
+        let updateData = JSON.stringify({ animal_name: this.Data.animal_name, animal_description: this.Data.animal_description, sifarnik_id: this.Data.sifarnik_id, date: this.Data.date });
       this.$http.put('http://localhost/slim/public/api/animal/'+this.$route.params.id, updateData).then(function(response){
         this.$router.push({path: '/animal', query:{alert:'Zivotinja je izmenjena'}});
       });

@@ -3,7 +3,7 @@
 
   <div class="margin">
   <router-link to="/breed"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
-  <div class="height1"><h3><b>Pasmina:</b></h3> <h4>{{Data.breed}}</h4><h3><b>Opis:</b></h3> <h4>{{Data.description}}</h4></div>
+  <div class="height1"><h3><b>Pasmina:</b></h3> <h4>{{Data.name}}</h4><h3><b>Opis:</b></h3> <h4>{{Data.description}}</h4></div>
   </div>
 
   <div class="razmak"></div>
@@ -16,7 +16,7 @@
   <alert v-if="alert" v-bind:message="alert"/>
     <h4>Breed</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Ime breed" v-model="Data.breed">
+      <input type="text" class="form-control" placeholder="Ime breed" v-model="Data.name">
     </div>
   </div>
   <div class="well">
@@ -53,10 +53,10 @@ export default {
     });
     },
     editBreed(e){
-      if(!this.Data.breed || !this.Data.description){
+      if(!this.Data.name || !this.Data.description){
         this.alert = "Sva polja moraju biti popunjena";
       } else{
-        let updateData = JSON.stringify({ breed: this.Data.breed, description: this.Data.description });
+        let updateData = JSON.stringify({ name: this.Data.name, description: this.Data.description });
       this.$http.put('http://localhost/slim/public/api/code/'+this.$route.params.id, updateData).then(function(response){
         this.$router.push({path: '/breed', query:{alert:'Sifranik je izmenjen'}});
       });

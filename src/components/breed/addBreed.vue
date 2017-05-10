@@ -11,7 +11,7 @@
 	<div class="well">
 		<h4>Pasmina</h4>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="breed" v-model="Data.breed">
+			<input type="text" class="form-control" placeholder="name" v-model="Data.name">
 		</div>
 	</div>
 	<div class="well">
@@ -38,10 +38,10 @@ export default {
   },
   methods:{
   	addBreed(e){
-  		if(!this.Data.breed || !this.Data.description){
+  		if(!this.Data.name || !this.Data.description){
   			this.alert = "Sva polja moraju biti popunjena";
   		} else{
-  			let newData = JSON.stringify({ breed: this.Data.breed, description: this.Data.description });
+  			let newData = JSON.stringify({ name: this.Data.name, description: this.Data.description });
   		this.$http.post('http://localhost/slim/public/api/code', newData).then(function(response){
   			this.$router.push({path: '/breed', query:{alert:'Sifranik je dodan'}});
   		});

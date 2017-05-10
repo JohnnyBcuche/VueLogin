@@ -50,14 +50,14 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th width="35%" v-on:click="sortBy('breed')">Pasmina <i class="pull-right glyphicon" :class="[!orderCount?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
+      <th width="35%" v-on:click="sortBy('name')">Pasmina <i class="pull-right glyphicon" :class="[!orderCount?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
       <th width="55%" v-on:click="sortBy('description')">Opis <i class="pull-right glyphicon" :class="[!orderCount?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
       <th width="10%" class="center"><div class="none">Izmeni</div></th>
     </tr>
   </thead>
   <tbody v-for="field in Data.data">
     <tr class="table-width">
-      <td>{{field.breed}}</td>
+      <td>{{field.name}}</td>
       <td>{{field.description}}</td>
       <td class="center"><router-link v-bind:to="'/editBreed/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
     </tr>

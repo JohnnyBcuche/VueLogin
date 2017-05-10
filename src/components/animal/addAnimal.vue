@@ -11,19 +11,19 @@
   <div class="well">
     <h4>Animal</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="animal" v-model="Data.name">
+      <input type="text" class="form-control" placeholder="animal" v-model="Data.animal_name">
     </div>
   </div>
   <div class="well">
     <h4>Opis</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="description" v-model="Data.description">
+      <input type="text" class="form-control" placeholder="description" v-model="Data.animal_description">
     </div>
   </div>
   <div class="well">
     <h4>Pasmina</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="breed" v-model="Data.idsifarnik">
+      <input type="text" class="form-control" placeholder="breed" v-model="Data.sifarnik_id">
     </div>
   </div>
   <div class="well">
@@ -50,10 +50,10 @@ export default {
   },
   methods:{
     addAnimal(e){
-      if(!this.Data.name || !this.Data.description || !this.Data.idsifarnik || !this.Data.date){
+      if(!this.Data.animal_name || !this.Data.animal_description || !this.Data.sifarnik_id || !this.Data.date){
         this.alert = "Sva polja moraju biti popunjena";
       } else{
-        let newData = JSON.stringify({ name: this.Data.name, description: this.Data.description, idsifarnik: this.Data.idsifarnik, date: this.Data.date});
+        let newData = JSON.stringify({ animal_name: this.Data.animal_name, animal_description: this.Data.animal_description, sifarnik_id: this.Data.sifarnik_id, date: this.Data.date});
       this.$http.post('http://localhost/slim/public/api/animal', newData).then(function(response){
         this.$router.push({path: '/animal', query:{alert:'Zivotinja je dodana'}});
       });
