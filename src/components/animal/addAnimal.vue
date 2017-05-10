@@ -7,6 +7,66 @@
 </div>
 <h1 class="page-header margin">Dodaj zivotinju</h1>
 <div class="razmak"></div>
+
+<!-- Popup for choosing breed -->
+
+<div id="GSCCModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+        <h4 class="modal-title" id="myModalLabel">Izaberite pasminu</h4>
+      </div>
+      <div class="modal-body">
+
+      <!--Search-->
+      <input type="text" class="form-control" id='search' placeholder="Search" v-on:input="searchTable(filterInput)" v-model="filterInput" name="q">
+      <div class="input-group-btn">
+      </div>
+
+        <!--Pagination-->
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li v-if="pageNumber <= 1" class="disabled">
+            <a aria-label="Previous" v-on:click="previousPage">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li v-else>
+            <a aria-label="Previous" v-on:click="previousPage">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+
+          <li v-for="item in breed.last_page" v-on:click="goToPage(item)" v-if="item === pageNumber" class="active"><a>{{item}}</a></li>
+          <li v-else v-on:click="goToPage(item)" ><a>{{item}}</a></li>
+
+          <li v-if="pageNumber >= breed.last_page" class="disabled">
+            <a aria-label="Next" v-on:click="nextPage">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li v-else>
+            <a aria-label="Next" v-on:click="nextPage">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+        <!--End of pagination-->
+
+      <ul class="list-group">
+        <li v-for="item in breed.data" class="list-group-item" v-on:click="returnBreedId(item.id)" data-dismiss="modal">{{item.name}}</li>
+      </ul >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Popup for choosing breed -->
+
 <form v-on:submit="addAnimal" class="margin">
   <div class="well">
     <h4>Animal</h4>
@@ -23,7 +83,7 @@
   <div class="well">
     <h4>Pasmina</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="breed" v-model="Data.sifarnik_id">
+        <div class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal"><input type="button" value="Izaberi"> <strong v-for="value in breed.data" v-if="breedId == value.id">Izabrali ste {{value.name}}</strong></div>
     </div>
   </div>
   <div class="well">
@@ -33,7 +93,10 @@
     </div>
   </div>
   <input type="submit" value="Dodaj" class="btn-sm btn-primary"><div class="razmak"></div>
+
 </form>
+
+
 </div>
 </template>
 
@@ -43,17 +106,27 @@ export default {
   name: 'addAnimal',
   data () {
     return {
-      title: 'Home page.',
+      resource_url: 'http://localhost/slim/public/api/codes',
       Data: {},
+      breed: [],
+      breedId: '',
       alert: '',
+      //curently selected page
+      pageNumber: '',
+      //used to check if the pagination link was already clicked
+      executed: false,
+      //variable to store search input
+      filterInput: '',
     }
   },
   methods:{
     addAnimal(e){
-      if(!this.Data.animal_name || !this.Data.animal_description || !this.Data.sifarnik_id || !this.Data.date){
+      if(this.breedId == '')
+        this.alert = "Niste izabrali pasminu";
+      if(!this.Data.animal_name || !this.Data.animal_description || !this.Data.date){
         this.alert = "Sva polja moraju biti popunjena";
       } else{
-        let newData = JSON.stringify({ animal_name: this.Data.animal_name, animal_description: this.Data.animal_description, sifarnik_id: this.Data.sifarnik_id, date: this.Data.date});
+        let newData = JSON.stringify({ animal_name: this.Data.animal_name, animal_description: this.Data.animal_description, sifarnik_id: this.breedId, date: this.Data.date});
       this.$http.post('http://localhost/slim/public/api/animal', newData).then(function(response){
         this.$router.push({path: '/animal', query:{alert:'Zivotinja je dodana'}});
       });
@@ -61,13 +134,74 @@ export default {
       }
 
       e.preventDefault();
-    }
+    },
+    fetchBreed(url){
+        this.$http.get(url, {params:  {orderBy: 'name', direction: 'ASC', search: this.filterInput}}).then(function(response){
+        this.breed=response.data;
+        });
+      },
+    returnBreedId(val){
+      this.breedId = val;
+    },
+
+    //method to go to the next page of the restful api - only executes on first click
+    nextPage(){
+      if(this.breed.next_page_url != null && !this.executed)
+      {
+        this.executed = true;
+        let url = this.resource_url;
+        this.resource_url = this.resource_url + this.breed.next_page_url;
+        this.fetchBreed(this.resource_url);
+        this.resource_url = url;
+        this.executed = false;
+        if(this.pageNumber < this.breed.last_page)
+          this.pageNumber++;
+      }
+    },
+    //method to go to the previous page of the restful api - only executes on first click
+    previousPage(){
+      if(this.breed.prev_page_url !=null && !this.executed)
+      {
+        this.executed = true;
+        let url = this.resource_url;
+        this.resource_url = this.resource_url + this.breed.prev_page_url;
+        this.fetchBreed(this.resource_url);
+        this.resource_url = url;
+        this.executed = false;
+        if(this.pageNumber > 1)
+          this.pageNumber--;
+      }
+    },
+    //method to go to the selected page of the restful api - only executes on first click
+    goToPage(number){
+      if(number > this.breed.last_page)
+        number = this.breed.last_page;
+      else if(number < 1)
+        number = 1;
+        this.executed = true;
+        let url = this.resource_url;
+        this.resource_url = this.resource_url + "?page="+parseInt(number);
+        this.fetchBreed(this.resource_url);
+        this.resource_url = url;
+        this.executed = false;
+        this.pageNumber = number;
+    },
+    //searches the table 
+    searchTable(value){
+      if(value != null)
+      {
+        this.filterInput = value;
+        this.fetchBreed(this.resource_url, {params:  {search: this.filterInput}});
+        console.log(this.filterInput);
+      }
+    },
   },
   components: {
     alert
   },
   created: function(){
-
+    this.fetchBreed(this.resource_url);
+    this.pageNumber = 1;
   }
 }
 </script>
