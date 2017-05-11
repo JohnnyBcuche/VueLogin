@@ -93,7 +93,7 @@
   <div class="well">
     <h4>Datum</h4>
     <div class="form-group">
-      <input type="date" class="form-control" placeholder="date" v-model="Data.date" name="bday" min="2000-01-02" max="2015-12-12">
+      <input type="text" class="form-control" placeholder="date" v-model="Data.date" id="datepicker">
     </div>
   </div>
   <input type="submit" value="Izmeni" class="btn-sm btn-primary"><div class="razmak"></div>
