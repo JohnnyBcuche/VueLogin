@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import vueResource from 'vue-resource'
 import VueRouter from 'vue-router'
-import VuePaginate from 'vue-paginate'
 import InfiniteLoading from 'vue-infinite-loading'
 import lodash from 'lodash'
 import App from './App'
@@ -20,7 +19,6 @@ import editAnimal from './components/animal/editAnimal'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
-Vue.use(VuePaginate)
 Vue.config.productionTip = false
 
 const router = new VueRouter({

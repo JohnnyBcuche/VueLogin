@@ -93,7 +93,7 @@
   <div class="well">
     <h4>Datum</h4>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="date" v-model="Data.date" id="datepicker">
+      <datepicker :format="'yyyy-MM-dd'" v-model="Data.date" :disabled="disabled"></datepicker>
     </div>
   </div>
   <input type="submit" value="Izmeni" class="btn-sm btn-primary"><div class="razmak"></div>
@@ -104,6 +104,7 @@
 
 <script>
 import alert from '../alert'
+import Datepicker from 'vuejs-datepicker'
 export default {
   name: 'editAnimal',
   data () {
@@ -119,6 +120,10 @@ export default {
       executed: false,
       //variable to store search input
       filterInput: '',
+      disabled: {
+        to: new Date(2000, 0, 1), // Disable all dates up to specific date
+        from: new Date(2017, 10, 26), // Disable all dates after specific date
+      },
     }
   },
   methods:{
@@ -208,14 +213,19 @@ export default {
         console.log(this.filterInput);
       }
     },
+    dateNow(){
+      this.disabled.from = new Date(Date.now());
+    }
   },
   components: {
-    alert
+    alert,
+    Datepicker
   },
   created: function(){
     this.fetchData(this.$route.params.id);
     this.fetchBreed(this.resource_url);
     this.pageNumber = 1;
+    this.dateNow();
 	}
 }
 </script>
