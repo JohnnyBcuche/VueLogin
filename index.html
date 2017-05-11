@@ -6,7 +6,6 @@
     <title>login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
   </head>
   <body>
     <div id="app"></div>
@@ -22,13 +21,13 @@
     $( "#datepicker" ).datepicker({
       changeMonth: true,
       changeYear: true,
-      altFormat: 'yyyy-mm-dd',
+      dateFormat: 'yy-mm-dd',
       showButtonPanel: true,
       closeText: 'Close',
       maxDate: 'today',
       minDate: new Date(2000, 1 - 1, 1),
     });
-    $.datepicker._gotoToday = function(id) {
+  $.datepicker._gotoToday = function(id) {
   var inst = this._getInst($(id)[0]);
 
   var date = new Date();
