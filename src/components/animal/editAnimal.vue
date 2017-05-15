@@ -130,7 +130,7 @@ export default {
     fetchData(id){
       this.$http.get('http://localhost/slim/public/api/animal/'+id).then(function(response){
     this.Data=response.data;
-    this.breedId = this.Data.sifarnik_id;
+    this.breedId = this.Data.breed_id;
       });
     },
     deleteData(id){
@@ -144,7 +144,7 @@ export default {
       if(!this.Data.animal_name || !this.Data.animal_description || !this.Data.date){
         this.alert = "Sva polja moraju biti popunjena";
       } else{
-        let updateData = JSON.stringify({ animal_name: this.Data.animal_name, animal_description: this.Data.animal_description, sifarnik_id: this.breedId, date: this.Data.date});
+        let updateData = JSON.stringify({ animal_name: this.Data.animal_name, animal_description: this.Data.animal_description, breed_id: this.breedId, date: this.Data.date});
       this.$http.put('http://localhost/slim/public/api/animal/'+this.$route.params.id, updateData).then(function(response){
         this.$router.push({path: '/animal', query:{alert:'Zivotinja je izmenjena'}});
       });

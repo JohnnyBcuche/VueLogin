@@ -9,20 +9,6 @@
 <input type="submit" value="Sign Up" class="btn-primary btn-sm"><div class="razmak"></div>
 </fieldset>
 </form>
-<ul>
-	<div class="row list-group margin">
-	<li v-for="user in users" class="list-group-item">
-		<div class="panel panel-info">
-		<div class="panel-heading">
-		Username: {{user.username}} 
-		</div>
-		<div class="panel-body">
-		Email: {{user.email}} <br>Password: {{user.password}}
-		</div>
-		</div>
-	</li >
-	</div>
-</ul>
 </div>
 </template>
 

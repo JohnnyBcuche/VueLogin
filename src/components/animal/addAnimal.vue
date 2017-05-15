@@ -132,7 +132,7 @@ export default {
       if(!this.Data.animal_name || !this.Data.animal_description || !this.Data.date){
         this.alert = "Sva polja moraju biti popunjena";
       } else{
-        let newData = JSON.stringify({ animal_name: this.Data.animal_name, animal_description: this.Data.animal_description, sifarnik_id: this.breedId, date: this.Data.date});
+        let newData = JSON.stringify({ animal_name: this.Data.animal_name, animal_description: this.Data.animal_description, breed_id: this.breedId, date: this.Data.date});
       this.$http.post('http://localhost/slim/public/api/animal', newData).then(function(response){
         this.$router.push({path: '/animal', query:{alert:'Zivotinja je dodana'}});
       });

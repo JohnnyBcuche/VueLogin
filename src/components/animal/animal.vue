@@ -53,7 +53,7 @@
       <th width="20%" v-on:click="sortBy('animal_name')">Ime <i class="pull-right glyphicon" :class="[!orderCount?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
       <th width="35%" v-on:click="sortBy('animal_description')">Opis <i class="pull-right glyphicon" :class="[!orderCount?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
       <th width="15%" v-on:click="sortBy('date')">Datum <i class="pull-right glyphicon" :class="[!orderCount?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
-      <th width="20%" v-on:click="sortBy('sifarnik_id')">Pasmina <i class="pull-right glyphicon" :class="[!orderCount?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
+      <th width="20%" v-on:click="sortBy('breed_id')">Pasmina <i class="pull-right glyphicon" :class="[!orderCount?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']"></i></th>
       <th width="10%" class="center"><div class="none">Izmeni</div></th>
     </tr>
   </thead>
@@ -62,7 +62,7 @@
       <td>{{field.animal_name}}</td>
       <td>{{field.animal_description}}</td>
       <td>{{field.date}}</td>
-      <td>{{field.sifarnik_id}}</td>
+      <td>{{field.breed_id}}</td>
       <td class="center"><router-link v-bind:to="'/editAnimal/'+field.id"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link></td>
     </tr>
   </tbody>
