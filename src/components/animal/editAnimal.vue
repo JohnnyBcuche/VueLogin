@@ -3,7 +3,7 @@
 
   <div class="margin">
   <router-link to="/animal"><i class="fa fa-arrow-circle-o-left font btn-default btn-lg height" aria-hidden="true"></i></router-link>
-  <div class="height1"><h3><b>Zivotinja:</b></h3> <h4>{{Data.animal}}</h4><h3><b>Opis:</b></h3> <h4>{{Data.animal_description}}</h4></div>
+  <div class="height1"><h3><b>Zivotinja:</b></h3> <h4>{{Data.animal_name}}</h4><h3><b>Opis:</b></h3> <h4>{{Data.animal_description}}</h4></div>
   </div>
 
   <div class="razmak"></div>
